@@ -1,9 +1,5 @@
-const {
-	ActionRowBuilder,
-	ButtonBuilder,
-	ButtonStyle,
-	Events,
-} = require("discord.js");
+const { Events } = require("discord.js");
+const { ComponentType } = require("discord.js");
 
 module.exports = {
 	name: Events.InteractionCreate,
@@ -27,6 +23,21 @@ module.exports = {
 				console.error(error);
 			}
 		}
-		
+		const collector = interaction.channel.createMessageComponentCollector({
+			time: 15000,
+		});
+        // Button Event collector
+		collector.on("collect", (i) => {
+			if (i.user.id === interaction.user.id) {
+                console.log(i.customId);
+				i.reply(
+					`${i.user.username} clicked on the ${i.customId} button.`
+				);
+			}
+		}); 
+
+		collector.on("end", (collected) => {
+			console.log(`Collected ${collected.size} interactions.`);
+		});
 	},
 };

@@ -9,25 +9,25 @@ const {
 const row = new ActionRowBuilder()
 	.addComponents(
 		new ButtonBuilder()
-			.setCustomId("primary")
+			.setCustomId("primary_btn")
 			.setLabel("일반 버튼")
 			.setStyle(ButtonStyle.Primary)
 	)
 	.addComponents(
 		new ButtonBuilder()
-			.setCustomId("success")
+			.setCustomId("success_btn")
 			.setLabel("성공 버튼")
 			.setStyle(ButtonStyle.Success)
 	)
 	.addComponents(
 		new ButtonBuilder()
-			.setCustomId("danger")
+			.setCustomId("danger_btn")
 			.setLabel("실패 버튼")
 			.setStyle(ButtonStyle.Danger)
 	)
 	.addComponents(
 		new ButtonBuilder()
-			.setCustomId("emoji")
+			.setCustomId("emoji_btn")
 			.setLabel("이모지버튼")
 			.setStyle(ButtonStyle.Primary)
 			.setEmoji("😎")
@@ -41,12 +41,12 @@ const embed = new EmbedBuilder()
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("button-test")
-		.setDescription("Button-Test")
-		.setDefaultMemberPermissions(0),
+		.setDescription("Button-Test"),
+		// .setDefaultMemberPermissions(0), 관리자만 가능
 	async execute(interaction) {
 		await interaction.reply({
 			content: "Show the buttons",
-			// ephemeral: true, 버튼 요구한 사람만 보는가? 여부
+			ephemeral: true,
 			components: [row],
 		});
 	},
