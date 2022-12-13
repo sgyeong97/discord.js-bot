@@ -1,5 +1,4 @@
 const { Events } = require("discord.js");
-const { ComponentType } = require("discord.js");
 
 module.exports = {
 	name: Events.InteractionCreate,
