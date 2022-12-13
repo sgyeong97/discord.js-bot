@@ -11,7 +11,7 @@
 ### :star: 기능 목록 :star:
 - [x] :umbrella: 오늘의 날씨
 - [ ] :newspaper: 오늘의 뉴스
-- [ ] :fork_and_knife: 오늘의 메뉴 추천
+- [x] :fork_and_knife: 오늘의 메뉴 추천
 - [ ] :birthday: 생일 축하
   - [ ] 사전에 생일 등록 필요
 - [ ] 메이플 기능

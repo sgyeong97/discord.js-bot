@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 require("dotenv").config();
+
 // weather API setting
 const axios = require("axios");
 const API_KEY = process.env.WEATHER_KEY;
