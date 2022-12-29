@@ -1,6 +1,8 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const axios = require("axios");
+const cheerio = require("cheerio");
 
-let Menu = [
+let menuList = [
 	"마라탕",
 	"쌀국수",
 	"갈비찜",
@@ -177,7 +179,32 @@ module.exports = {
 		.setName("음식추천")
 		.setDescription("랜덤으로 음식을 추천해드립니다!"),
 	async execute(interaction) {
-		const random = Math.floor(Math.random() * Menu.length);
-		return interaction.reply("추천 음식 : "+Menu[random]);
+		const menu = menuList[Math.floor(Math.random() * menuList.length)];
+		const url = await parsing(menu);
+		const embed = new EmbedBuilder()
+			.setColor("Random")
+			.setAuthor({ name: "음식 추천" })
+			.setImage(url)
+			.setDescription(menu);
+		return interaction.reply({
+			embeds: [embed],
+		});
 	},
+};
+
+const getHTML = async (keyword) => {
+	try {
+		return await axios.get(
+			`https://www.google.com/search?q=${keyword}&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjh_4KViZ78AhXGb94KHWFMAGQQ_AUoAXoECAEQAw&biw=1920&bih=1007&dpr=1`
+		);
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+const parsing = async (keyword) => {
+	const html = await getHTML(keyword);
+	const $ = cheerio.load(html.data);
+	let url = $("img")[1].attribs.src;
+	return await url;
 };
