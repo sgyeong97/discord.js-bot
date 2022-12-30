@@ -25,15 +25,15 @@ module.exports = {
 		const collector = interaction.channel.createMessageComponentCollector({
 			time: 15000,
 		});
-        // Button Event collector
+		// Button Event collector
 		collector.on("collect", (i) => {
 			if (i.user.id === interaction.user.id) {
-                console.log(i.customId);
+				console.log(i.customId);
 				i.reply(
 					`${i.user.username} clicked on the ${i.customId} button.`
 				);
 			}
-		}); 
+		});
 
 		collector.on("end", (collected) => {
 			console.log(`Collected ${collected.size} interactions.`);

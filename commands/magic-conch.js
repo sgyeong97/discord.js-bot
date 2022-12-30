@@ -27,30 +27,7 @@ function randomAnswer() {
 	];
 	const random = Math.floor(Math.random() * answerList.length);
 	let fileName = "magic-conch-";
-	console.log(random);
-	switch (random) {
-		case 0:
-			fileName = fileName + "1.jpg";
-			break;
-		case 1:
-			fileName = fileName + "2.jpg";
-			break;
-		case 2:
-			fileName = fileName + "3.jpg";
-			break;
-		case 3:
-			fileName = fileName + "4.jpg";
-			break;
-		case 4:
-			fileName = fileName + "5.jpg";
-			break;
-		case 5:
-			fileName = fileName + "6.jpg";
-			break;
-		case 6:
-			fileName = fileName + "7.jpg";
-			break;
-	}
+	fileName = fileName + (random + 1) + ".jpg";
 	return fileName;
 }
 
@@ -64,7 +41,6 @@ module.exports = {
 				.setDescription("오 마법의 소라고동이시여, (질문)")
 		),
 	async execute(interaction) {
-		console.log(interaction.member.nickname);
 		const value = interaction.options.getString("질문");
 		if (value) {
 			const fileName = randomAnswer();
